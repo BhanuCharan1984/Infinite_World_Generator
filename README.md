@@ -419,3 +419,366 @@ You should submit:
 
 ---
 
+# Week 6 | Procedural Algorithms in Python
+
+## Overview
+
+This week marks the transition from scripting simple Blender operations to building the algorithms that power procedural worlds.
+
+Students will learn how deterministic algorithms can generate infinite landscapes, caves, forests, and settlements using only mathematical rules and a seed value. By combining Python with procedural generation techniques, students will begin creating systems capable of producing unique yet reproducible worlds.
+
+---
+
+# Learning Objectives
+
+By the end of this week, students will be able to:
+
+* Understand deterministic procedural generation
+* Generate terrain using noise algorithms
+* Build reproducible worlds using seed values
+* Implement chunk-based terrain generation
+* Understand classical procedural generation algorithms
+* Store and retrieve procedural world data
+* Design scalable world-generation pipelines
+
+---
+
+# Topics
+
+## Procedural Generation Fundamentals
+
+Procedural generation is the process of creating content algorithmically instead of designing everything manually.
+
+Key ideas:
+
+* Deterministic generation
+* Randomness vs reproducibility
+* Seed values
+* Infinite worlds
+* Data-driven generation
+
+Example:
+
+```python
+import random
+
+random.seed(42)
+print(random.randint(1,100))
+```
+
+Running the script multiple times with the same seed always produces the same result.
+
+---
+
+## Noise Functions
+
+Noise is the foundation of procedural terrain.
+
+Students will explore:
+
+* Value Noise
+* Perlin Noise
+* OpenSimplex Noise
+* Fractal Brownian Motion (fBM)
+
+Applications:
+
+* Terrain generation
+* Mountain ranges
+* Valleys
+* Biome masks
+* Rivers
+
+Example:
+
+```python
+height = noise(x, z)
+```
+
+Every coordinate produces a predictable height value.
+
+---
+
+## Seed Systems
+
+Seeds allow procedural worlds to be reproduced exactly.
+
+Example:
+
+```python
+seed = 12345
+```
+
+Every generated object depends on the seed.
+
+Applications:
+
+* Multiplayer worlds
+* Save systems
+* World sharing
+* Reproducible terrain
+
+---
+
+## Chunk-Based Terrain
+
+Infinite worlds are divided into manageable sections called **chunks**.
+
+Instead of generating an entire world at once, only nearby chunks are loaded.
+
+Example:
+
+```text
++-----+-----+-----+
+|     |     |     |
++-----+-----+-----+
+|     | P   |     |
++-----+-----+-----+
+|     |     |     |
++-----+-----+-----+
+```
+
+Where:
+
+* **P** = Player
+* Nearby chunks = Loaded
+* Distant chunks = Unloaded
+
+Advantages:
+
+* Better performance
+* Lower memory usage
+* Infinite exploration
+
+---
+
+## Cellular Automata
+
+Cellular Automata create natural-looking cave systems and organic structures.
+
+Each cell changes based on the state of its neighboring cells.
+
+Applications:
+
+* Caves
+* Islands
+* Rock formations
+* Organic terrain
+
+---
+
+## Flood Fill
+
+Flood Fill identifies connected regions in a grid.
+
+Applications:
+
+* Lake detection
+* River systems
+* Region segmentation
+* Cave connectivity
+
+---
+
+## Graph Traversal
+
+Graphs model relationships between locations.
+
+Students will learn:
+
+* Nodes
+* Edges
+* Connected components
+
+Applications:
+
+* Settlement networks
+* Road generation
+* Navigation systems
+
+---
+
+## L-Systems
+
+L-Systems generate branching structures recursively.
+
+Applications:
+
+* Trees
+* Plants
+* Roots
+* Coral
+* Fantasy vegetation
+
+Example:
+
+```text
+F → FF+[+F-F-F]-[-F+F+F]
+```
+
+Each iteration increases complexity.
+
+---
+
+## Wave Function Collapse (Overview)
+
+Wave Function Collapse is a constraint-based procedural generation algorithm.
+
+Instead of placing objects randomly, every placement follows predefined compatibility rules.
+
+Applications:
+
+* Tile-based worlds
+* Dungeon generation
+* City layouts
+* Pattern generation
+
+Students will gain a conceptual understanding of the algorithm without implementing it fully.
+
+---
+
+## BSP (Binary Space Partitioning)
+
+BSP recursively divides space into smaller sections.
+
+Applications:
+
+* Dungeon generation
+* Building interiors
+* Village layouts
+* Room generation
+
+Advantages:
+
+* Organized layouts
+* Efficient space usage
+
+---
+
+## Storing Procedural Data
+
+Generated worlds need to store information efficiently.
+
+Students will explore:
+
+* Dictionaries
+* Lists
+* Nested structures
+* JSON serialization
+
+Applications:
+
+* Saving worlds
+* Chunk data
+* Object metadata
+
+---
+
+## Designing a Procedural Pipeline
+
+Students will learn how each system connects together.
+
+Example pipeline:
+
+```text
+Seed
+    │
+    ▼
+Noise Generation
+    │
+    ▼
+Height Map
+    │
+    ▼
+Biome Selection
+    │
+    ▼
+Vegetation
+    │
+    ▼
+Roads
+    │
+    ▼
+Structures
+    │
+    ▼
+Final World
+```
+
+Understanding this pipeline prepares students for building the complete Infinite World Generator.
+
+---
+
+# Key Concepts
+
+| Concept                  | Purpose                        |
+| ------------------------ | ------------------------------ |
+| Seed                     | Reproducible world generation  |
+| Perlin/OpenSimplex Noise | Terrain generation             |
+| fBM                      | Layered terrain detail         |
+| Chunk System             | Infinite worlds                |
+| Cellular Automata        | Cave generation                |
+| Flood Fill               | Connected region detection     |
+| Graph Traversal          | Road and settlement logic      |
+| L-Systems                | Procedural vegetation          |
+| BSP                      | Dungeon and settlement layouts |
+| Wave Function Collapse   | Constraint-based generation    |
+| JSON                     | Saving procedural data         |
+
+---
+
+# Mini Project
+
+## Chunk-Based Terrain Generator
+
+Create a Python program that:
+
+* Generates terrain heights using a seed
+* Divides the world into chunks
+* Produces deterministic terrain
+* Generates the same world every time the same seed is used
+* Stores generated chunk information in a dictionary or JSON file
+
+Example output:
+
+```text
+Seed: 2025
+
+Chunk (0,0)
+Average Height: 18.4
+
+Chunk (1,0)
+Average Height: 22.1
+
+Chunk (0,1)
+Average Height: 14.7
+```
+
+The project should demonstrate the core ideas behind infinite procedural terrain generation.
+
+---
+
+# Deliverables
+
+Students should submit:
+
+* A Python implementation of seeded terrain generation
+* A chunk-based world generation system
+* A demonstration of deterministic world generation
+* Stored chunk data using dictionaries or JSON
+* Well-commented source code explaining the procedural pipeline
+
+---
+
+# Looking Ahead
+
+In Week 7, students will begin combining everything they've learned into a fully functional **Infinite World Generator**.
+
+Topics include:
+
+* Blender Add-on Development
+* Custom UI Panels
+* Buttons, Sliders, and Properties
+* Connecting Python with Geometry Nodes
+* Preset Management
+* Building the first version of the procedural world generation tool

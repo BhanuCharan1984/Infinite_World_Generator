@@ -782,3 +782,361 @@ Topics include:
 * Connecting Python with Geometry Nodes
 * Preset Management
 * Building the first version of the procedural world generation tool
+
+# Week 7 | Building the Infinite World Generator Add-on
+
+## Overview
+
+After learning procedural algorithms and world generation techniques, students now begin combining everything into a complete Blender add-on.
+
+This week focuses on designing a user-friendly interface that allows artists to generate entire procedural worlds without modifying code. Students will learn how Blender add-ons are structured, how to create custom UI panels, expose adjustable parameters, and connect Python scripts with Geometry Nodes to build a modular world generation pipeline.
+
+By the end of the week, students will have the **first working version of the Infinite World Generator**.
+
+---
+
+# Learning Objectives
+
+By the end of this week, students will be able to:
+
+* Understand the structure of Blender add-ons
+* Create custom UI panels using Blender's Python API
+* Design intuitive interfaces for procedural tools
+* Register operators and properties
+* Connect Python scripts with Geometry Nodes
+* Build modular procedural systems
+* Save and load world generation presets
+* Organize a large Blender project into reusable modules
+
+---
+
+# Topics
+
+## Introduction to Blender Add-ons
+
+Blender add-ons extend Blender by introducing new tools, interfaces, and automation features.
+
+Students will learn:
+
+* What is a Blender add-on?
+* Add-on folder structure
+* Registration system
+* Installing and enabling add-ons
+
+Typical structure:
+
+```text
+InfiniteWorldGenerator/
+│
+├── __init__.py
+├── operators.py
+├── panel.py
+├── properties.py
+├── generator.py
+├── utils.py
+└── assets/
+```
+
+---
+
+## Blender UI Panels
+
+Students will create a custom panel inside Blender's Sidebar (N-Panel).
+
+The panel will contain controls for generating procedural worlds.
+
+Example layout:
+
+```text
+Infinite World Generator
+
+Seed
+Terrain Size
+Mountain Strength
+Tree Density
+Village Count
+
+[ Generate World ]
+[ Randomize Seed ]
+```
+
+---
+
+## Blender Properties
+
+Students will expose adjustable parameters using Blender properties.
+
+Examples:
+
+* Integer Properties
+* Float Properties
+* Boolean Properties
+* Enum Properties
+* String Properties
+
+These properties allow users to customize world generation without modifying code.
+
+---
+
+## Blender Operators
+
+Operators perform actions inside Blender.
+
+Examples:
+
+* Generate Terrain
+* Randomize Seed
+* Clear Scene
+* Export World
+* Reset Settings
+
+Example:
+
+```python
+class WORLDGEN_OT_generate(bpy.types.Operator):
+    bl_idname = "world.generate"
+    bl_label = "Generate World"
+```
+
+Operators become the buttons users interact with.
+
+---
+
+## Connecting Python with Geometry Nodes
+
+Instead of generating everything directly with Python, Python controls the procedural systems already built with Geometry Nodes.
+
+Workflow:
+
+```text
+User Input
+      │
+      ▼
+Python Script
+      │
+      ▼
+Geometry Nodes Parameters
+      │
+      ▼
+Generated World
+```
+
+Python becomes the controller, while Geometry Nodes remains responsible for procedural geometry.
+
+---
+
+## Modular Project Design
+
+As projects grow larger, keeping everything inside one file becomes difficult.
+
+Students will separate functionality into modules.
+
+Example:
+
+```text
+terrain.py
+```
+
+Responsible for:
+
+* Terrain generation
+* Noise settings
+
+---
+
+```text
+biome.py
+```
+
+Responsible for:
+
+* Biome masks
+* Terrain materials
+
+---
+
+```text
+vegetation.py
+```
+
+Responsible for:
+
+* Tree placement
+* Rock scattering
+* Grass generation
+
+---
+
+```text
+roads.py
+```
+
+Responsible for:
+
+* Roads
+* Paths
+* Navigation
+
+---
+
+```text
+generator.py
+```
+
+Coordinates every system and generates the final world.
+
+---
+
+## Preset Management
+
+Instead of adjusting every parameter manually, users can save and reuse world presets.
+
+Example presets:
+
+* Desert
+* Snow Mountains
+* Tropical Island
+* Fantasy World
+* Plains
+
+Students will understand how configuration data can be stored and reapplied.
+
+---
+
+## World Generation Pipeline
+
+Students will combine every system developed so far into a single procedural workflow.
+
+Pipeline:
+
+```text
+Seed
+   │
+   ▼
+Terrain
+   │
+   ▼
+Biomes
+   │
+   ▼
+Vegetation
+   │
+   ▼
+Roads
+   │
+   ▼
+Settlements
+   │
+   ▼
+Final World
+```
+
+Each stage remains independent, making the generator easier to extend.
+
+---
+
+## User Experience (UX)
+
+A good procedural tool should be intuitive.
+
+Students will learn:
+
+* Organizing controls
+* Grouping related settings
+* Naming parameters clearly
+* Providing sensible default values
+* Reducing unnecessary complexity
+
+The goal is to make the add-on usable by artists with little programming experience.
+
+---
+
+## Project Organization
+
+Students will also learn best practices for maintaining larger projects.
+
+Topics include:
+
+* File organization
+* Code readability
+* Documentation
+* Version control
+* Modular programming
+
+These practices become increasingly important as the project grows.
+
+---
+
+# Key Concepts
+
+| Concept                    | Purpose                           |
+| -------------------------- | --------------------------------- |
+| Blender Add-ons            | Extend Blender functionality      |
+| UI Panels                  | User interface inside Blender     |
+| Operators                  | Execute actions through buttons   |
+| Properties                 | Store adjustable settings         |
+| Geometry Nodes Integration | Control procedural systems        |
+| Modular Design             | Organize code into reusable files |
+| Presets                    | Save and reuse configurations     |
+| UX Design                  | Build intuitive tools             |
+
+---
+
+# Mini Project
+
+## First Version of the Infinite World Generator
+
+Create the first working version of the add-on.
+
+The interface should include:
+
+* Seed
+* Terrain Size
+* Mountain Strength
+* Tree Density
+* Generate World Button
+* Randomize Seed Button
+
+The Generate button should:
+
+* Read user settings
+* Update Geometry Nodes parameters
+* Generate a procedural terrain
+
+The Randomize Seed button should:
+
+* Generate a new seed
+* Update the UI
+* Produce a different procedural world
+
+---
+
+# Deliverables
+
+Students should submit:
+
+* A functional Blender add-on
+* A custom UI panel in the Sidebar
+* Adjustable world generation settings
+* Working Generate World and Randomize Seed buttons
+* Modular project structure
+* Well-documented source code
+
+---
+
+# Looking Ahead
+
+Week 8 focuses on polishing and showcasing the Infinite World Generator.
+
+Topics include:
+
+* Scene Optimization
+* Level of Detail (LOD)
+* Packaging the Add-on
+* Documentation
+* GitHub Repository Structure
+* Demo Video Creation
+* Final World Rendering
+* Project Presentation
+
+By the end of Week 8, students will have a complete procedural world generation tool capable of generating varied terrain, vegetation, and environments from a single seed value.
